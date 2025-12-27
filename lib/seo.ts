@@ -79,12 +79,12 @@ export const pageSEO = {
   home: {
     en: {
       title: 'Gonzalo Morales Sáurez - Costa Rican Painter | Official Website',
-      description: 'Official website of Gonzalo Morales Sáurez (1945-2017), renowned Costa Rican painter known for masterful still life paintings and intimate portraits. Explore over 90 original artworks.',
+      description: 'Costa Rican hyperrealist painter (1945-2017). Explore 94 masterful still life paintings and portraits. Official estate website.',
       keywords: 'Gonzalo Morales Sáurez, Costa Rican painter, bodegones, still life paintings, Costa Rican art, Latin American artist, oil paintings, pastel paintings, art gallery, Costa Rica',
     },
     es: {
       title: 'Gonzalo Morales Sáurez - Pintor Costarricense | Sitio Oficial',
-      description: 'Sitio web oficial de Gonzalo Morales Sáurez (1945-2017), reconocido pintor costarricense conocido por sus magistrales bodegones y retratos íntimos. Explore más de 90 obras originales.',
+      description: 'Pintor hiperrealista costarricense (1945-2017). Explore 94 bodegones y retratos magistrales. Sitio oficial del legado artístico.',
       keywords: 'Gonzalo Morales Sáurez, pintor costarricense, bodegones, naturaleza muerta, arte costarricense, artista latinoamericano, pinturas al óleo, pinturas al pastel, galería de arte, Costa Rica',
     },
   },
