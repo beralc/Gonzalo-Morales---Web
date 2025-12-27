@@ -106,20 +106,28 @@ export default async function HomePage({
 
           {/* Grid of actual artwork */}
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 mb-16">
-            {featuredArtworks.slice(0, 6).map((artwork, index) => (
-              <Link
-                key={artwork.id}
-                href={`/${language}/works`}
-                className="group relative aspect-square bg-neutral-200 rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:scale-105"
-              >
-                <img
-                  src={artwork.path}
-                  alt={artwork.filename}
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300" />
-              </Link>
-            ))}
+            {featuredArtworks.slice(0, 6).map((artwork, index) => {
+              const categoryName = artwork.category === 'bodegones'
+                ? (language === 'en' ? 'Still Life Painting' : 'Bodegón')
+                : (language === 'en' ? 'Portrait' : 'Retrato');
+              const altText = `${categoryName} by Gonzalo Morales Sáurez`;
+
+              return (
+                <Link
+                  key={artwork.id}
+                  href={`/${language}/works`}
+                  className="group relative aspect-square bg-neutral-200 rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:scale-105"
+                  aria-label={`View ${altText}`}
+                >
+                  <img
+                    src={artwork.path}
+                    alt={altText}
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300" />
+                </Link>
+              );
+            })}
           </div>
 
           {/* Category Links */}
@@ -128,7 +136,7 @@ export default async function HomePage({
             <Link href={`/${language}/works/bodegones`} className="group relative h-80 rounded-lg overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300">
               <img
                 src={featuredArtworks[0]?.path || '/images/bodegones/bodegon_1_big.jpg'}
-                alt={t.works.bodegones}
+                alt={language === 'en' ? 'Still Life Paintings Collection by Gonzalo Morales Sáurez' : 'Colección de Bodegones por Gonzalo Morales Sáurez'}
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
@@ -146,7 +154,7 @@ export default async function HomePage({
             <Link href={`/${language}/works/retratos`} className="group relative h-80 rounded-lg overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300">
               <img
                 src={portraitPreview}
-                alt={t.works.retratos}
+                alt={language === 'en' ? 'Portrait Paintings Collection by Gonzalo Morales Sáurez' : 'Colección de Retratos por Gonzalo Morales Sáurez'}
                 className="w-full h-full object-cover object-[50%_20%] group-hover:scale-110 transition-transform duration-500"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />

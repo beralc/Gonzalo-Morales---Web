@@ -6,12 +6,17 @@ interface SEOConfig {
   description: string;
   keywords?: string;
   ogImage?: string;
+  path?: string;
 }
 
 const siteUrl = 'https://www.gonzalomorales.net';
 
 export function generateSEO(config: SEOConfig, lang: Language): Metadata {
-  const { title, description, keywords, ogImage } = config;
+  const { title, description, keywords, ogImage, path = '' } = config;
+
+  // Generate canonical URL and hreflang alternates
+  const canonicalPath = path || '';
+  const canonicalUrl = `/${lang}${canonicalPath}`;
 
   return {
     title,
@@ -27,16 +32,17 @@ export function generateSEO(config: SEOConfig, lang: Language): Metadata {
     },
     metadataBase: new URL(siteUrl),
     alternates: {
-      canonical: `/${lang}`,
+      canonical: canonicalUrl,
       languages: {
-        'en': '/en',
-        'es': '/es',
+        'en': `/en${canonicalPath}`,
+        'es': `/es${canonicalPath}`,
+        'x-default': `/en${canonicalPath}`,
       },
     },
     openGraph: {
       type: 'website',
       locale: lang === 'en' ? 'en_US' : 'es_ES',
-      url: siteUrl,
+      url: `${siteUrl}${canonicalUrl}`,
       title,
       description,
       siteName: 'Gonzalo Morales Sáurez - Official Website',

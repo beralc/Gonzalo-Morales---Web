@@ -13,6 +13,13 @@ interface GalleryProps {
 export default function Gallery({ artworks }: GalleryProps) {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
 
+  const getArtworkAlt = (artwork: Artwork) => {
+    const categoryName = artwork.category === 'bodegones'
+      ? 'Still Life Painting'
+      : 'Portrait';
+    return `${categoryName} by Gonzalo Morales Sáurez - ${artwork.filename}`;
+  };
+
   const openLightbox = (index: number) => {
     setSelectedIndex(index);
   };
@@ -41,11 +48,12 @@ export default function Gallery({ artworks }: GalleryProps) {
             key={artwork.id}
             onClick={() => openLightbox(index)}
             className="group rounded-lg overflow-hidden hover:shadow-xl transition-all duration-300"
+            aria-label={`View ${getArtworkAlt(artwork)}`}
           >
             <div className="relative aspect-square">
               <LazyImage
                 src={artwork.path}
-                alt={artwork.filename}
+                alt={getArtworkAlt(artwork)}
                 className="group-hover:scale-105 transition-transform duration-300"
               />
               <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
@@ -57,7 +65,7 @@ export default function Gallery({ artworks }: GalleryProps) {
       {selectedIndex !== null && (
         <Lightbox
           imageSrc={artworks[selectedIndex].path}
-          imageAlt={artworks[selectedIndex].filename}
+          imageAlt={getArtworkAlt(artworks[selectedIndex])}
           onClose={closeLightbox}
           onNext={nextImage}
           onPrev={prevImage}
