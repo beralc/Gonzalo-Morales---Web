@@ -5,7 +5,7 @@ import './globals.css';
 const siteUrl = 'https://www.gonzalomorales.net';
 const siteTitle = 'Gonzalo Morales Sáurez - Costa Rican Hyperrealist Painter';
 const siteDescription = 'Official website of Gonzalo Morales Sáurez (1945-2017), renowned Costa Rican hyperrealist painter known for his still life and portrait works. Studied at Real Academia de Bellas Artes de San Fernando in Madrid.';
-const previewImage = '/images/bodegones/bodegon_frutas.jpg';
+const previewImage = '/images/gonzalo_morales.jpg';
 
 export const metadata: Metadata = {
   title: siteTitle,
